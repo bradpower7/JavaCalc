@@ -7,9 +7,13 @@ import java.util.ArrayList;
  */
 public class CartesianGraph2D extends Graph2D{
 
-    public CartesianGraph2D(ArrayList<DataPoint2D> data, GraphSettings settings){
-        super(data, settings);
-    }
+    private ArrayList<DataPoint2D> _data;
+    private GraphColour _colour;
+    private int _xAxisRes;
+    private int _yAxisRes;
+
+
+    public CartesianGraph2D(){}
 
 
 
