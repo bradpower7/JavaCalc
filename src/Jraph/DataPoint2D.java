@@ -6,18 +6,18 @@ package Jraph;
 
 // note: class now immutable, changed from Initial Design Document
 final public class DataPoint2D {
-    private float _xVal;
-    private float _yVal;
+    private Double _xVal;
+    private Double _yVal;
 
-    public DataPoint2D(float xVal, float yVal){
+    public DataPoint2D(Double xVal, Double yVal){
         _xVal = xVal;
         _yVal = yVal;
     }
 
-    public float getX(){
+    public Double getX(){
         return _xVal;
     }
-    public float getY(){
+    public Double getY(){
         return _yVal;
     }
 }
