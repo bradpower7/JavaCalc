@@ -30,4 +30,9 @@ public class CalculationModule {
         }
         return data;
     }
+
+    public Double evaluate(String ex){
+        ExpressionEvaluator evaluator = new ExpressionEvaluator(ex);
+        return evaluator.evaluate();
+    }
 }

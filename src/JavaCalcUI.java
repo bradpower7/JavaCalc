@@ -3,12 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import Jraph.DataPoint2D;
 import org.jfree.chart.*;
 import org.jfree.data.xy.*;
 import org.jfree.chart.plot.PlotOrientation;
 
+import javax.swing.*;
+import javax.xml.transform.Result;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /**
      @Over    @Ov    @Override
@@ -34,6 +38,9 @@ public class JavaCalcUI extends javax.swing.JFrame {
 
 
     private String graphExpression;
+    private boolean lastNum = false;
+
+    private CalculationModule calcModule;
 
     /**
      * Creates new form JavaCalcUI
@@ -45,18 +52,14 @@ public class JavaCalcUI extends javax.swing.JFrame {
         ans = 0;
         initComponents();
 
+        calcModule = new CalculationModule();
+        graphExpression = new String();
 
-        XYSeries series = new XYSeries("XYGraph");
-        series.add(1.6, 8.454);
-        series.add(2,1);
-        series.add(5,1);
-        series.add(3,9);
-        series.add(4,100);
 
-        XYSeriesCollection dataset = new XYSeriesCollection();
-        dataset.addSeries(series);
 
-        chart = ChartFactory.createXYLineChart("XY Chart", "x-axis", "y-axis", dataset, PlotOrientation.VERTICAL, true, true, false);
+        dataset = new XYSeriesCollection();
+
+        chart = ChartFactory.createXYLineChart(null,null,null,dataset);
         cp = new ChartPanel(chart);
         GraphPanel.add(cp, java.awt.BorderLayout.CENTER);
         GraphPanel.validate();
@@ -99,8 +102,11 @@ public class JavaCalcUI extends javax.swing.JFrame {
         NegateButton = new javax.swing.JButton();
         DeleteButton = new javax.swing.JButton();
         GraphPanel = new javax.swing.JPanel();
-        GraphTextField = new javax.swing.JTextField();
-        GraphButton = new javax.swing.JButton();
+        XButton = new javax.swing.JButton();
+        LeftBracketButton = new JButton();
+        RightBracketButton = new JButton();
+        //GraphTextField = new javax.swing.JTextField();
+        //GraphButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("JavaCalc");
@@ -112,7 +118,7 @@ public class JavaCalcUI extends javax.swing.JFrame {
         ResultTextField.setText(Integer.toString(0));
         ResultTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        ClearButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        ClearButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         ClearButton.setText("Clear");
         ClearButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,7 +130,7 @@ public class JavaCalcUI extends javax.swing.JFrame {
         SqrtButton.setText("<html>&radic");
         SqrtButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UnaryOperationPerformed(evt);
+                OperatorButtonActionPerformed(evt);
             }
         });
 
@@ -132,7 +138,7 @@ public class JavaCalcUI extends javax.swing.JFrame {
         SquaredButton.setText("<html>x<sup>2</sup>");
         SquaredButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UnaryOperationPerformed(evt);
+                OperatorButtonActionPerformed(evt);
             }
         });
 
@@ -140,7 +146,7 @@ public class JavaCalcUI extends javax.swing.JFrame {
         InverseButton.setText("<html><sup>1</sup>&frasl;<sub>x</sub>");
         InverseButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UnaryOperationPerformed(evt);
+                OperatorButtonActionPerformed(evt);
             }
         });
 
@@ -148,7 +154,7 @@ public class JavaCalcUI extends javax.swing.JFrame {
         DivideButton.setText("<html>&divide");
         DivideButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BinaryOperationPerformed(evt);
+                OperatorButtonActionPerformed(evt);
             }
         });
 
@@ -156,7 +162,7 @@ public class JavaCalcUI extends javax.swing.JFrame {
         MultiplyButton.setText("<html>&times");
         MultiplyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BinaryOperationPerformed(evt);
+                OperatorButtonActionPerformed(evt);
             }
         });
 
@@ -164,7 +170,7 @@ public class JavaCalcUI extends javax.swing.JFrame {
         SubtractButton.setText("<html>&minus");
         SubtractButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BinaryOperationPerformed(evt);
+                OperatorButtonActionPerformed(evt);
             }
         });
 
@@ -172,7 +178,7 @@ public class JavaCalcUI extends javax.swing.JFrame {
         AddButton.setText("+");
         AddButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BinaryOperationPerformed(evt);
+                OperatorButtonActionPerformed(evt);
             }
         });
 
@@ -181,6 +187,30 @@ public class JavaCalcUI extends javax.swing.JFrame {
         EqualsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EqualsButtonActionPerformed(evt);
+            }
+        });
+
+        XButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        XButton.setText("x");
+        XButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                XButtonActionPerformed(evt);
+            }
+        });
+
+        LeftBracketButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        LeftBracketButton.setText("(");
+        LeftBracketButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BracketButtonActionPerformed(evt);
+            }
+        });
+
+        RightBracketButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        RightBracketButton.setText(")");
+        RightBracketButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BracketButtonActionPerformed(evt);
             }
         });
 
@@ -280,7 +310,7 @@ public class JavaCalcUI extends javax.swing.JFrame {
             }
         });
 
-        DeleteButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        DeleteButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         DeleteButton.setText("Delete");
         DeleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -300,6 +330,12 @@ public class JavaCalcUI extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(StandardCalcPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, StandardCalcPanelLayout.createSequentialGroup()
+                                    .addComponent(XButton)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(LeftBracketButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(RightBracketButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(DeleteButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(ClearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -348,7 +384,7 @@ public class JavaCalcUI extends javax.swing.JFrame {
 
         StandardCalcPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {AddButton, Button0, Button1, Button2, Button3, Button4, Button5, Button6, Button7, Button8, Button9, DecimalButton, DivideButton, EqualsButton, InverseButton, MultiplyButton, NegateButton, SqrtButton, SquaredButton, SubtractButton});
 
-        StandardCalcPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {ClearButton, DeleteButton});
+        StandardCalcPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {ClearButton, DeleteButton, XButton, LeftBracketButton, RightBracketButton});
 
         StandardCalcPanelLayout.setVerticalGroup(
             StandardCalcPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -358,6 +394,9 @@ public class JavaCalcUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(StandardCalcPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ClearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(XButton)
+                        .addComponent(LeftBracketButton)
+                        .addComponent(RightBracketButton)
                     .addComponent(DeleteButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(StandardCalcPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -400,12 +439,12 @@ public class JavaCalcUI extends javax.swing.JFrame {
 
         StandardCalcPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {AddButton, Button0, Button1, Button2, Button3, Button4, Button5, Button6, Button7, Button8, Button9, DecimalButton, DivideButton, EqualsButton, InverseButton, MultiplyButton, NegateButton, SqrtButton, SquaredButton, SubtractButton});
 
-        StandardCalcPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ClearButton, DeleteButton});
+        StandardCalcPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ClearButton, DeleteButton, XButton, LeftBracketButton, RightBracketButton});
 
         GraphPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         GraphPanel.setLayout(new java.awt.BorderLayout());
 
-        GraphTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        /*GraphTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         GraphButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         GraphButton.setText("Plot!");
@@ -414,7 +453,7 @@ public class JavaCalcUI extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 GraphActionPerformed(e);
             }
-        });
+        });*/
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -423,13 +462,11 @@ public class JavaCalcUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(GraphTextField)
                     .addComponent(StandardCalcPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(GraphPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(GraphButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 612, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -442,15 +479,83 @@ public class JavaCalcUI extends javax.swing.JFrame {
                     .addComponent(StandardCalcPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(GraphTextField)
-                    .addComponent(GraphButton, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
-                .addContainerGap())
-        );
+
+        )));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void UnaryOperationPerformed(java.awt.event.ActionEvent evt) {
+
+    private void BracketButtonActionPerformed(ActionEvent evt){
+        Object source = evt.getSource();
+        if(source == LeftBracketButton){
+            ResultTextField.setText(ResultTextField.getText().concat("("));
+            graphExpression += " ( ";
+        }
+        else{
+            ResultTextField.setText(ResultTextField.getText().concat(")"));
+            graphExpression += " ) ";
+        }
+    }
+    private void XButtonActionPerformed(java.awt.event.ActionEvent evt){
+        if(ResultTextField.getText().matches("0")){
+            ResultTextField.setText("x");
+            graphExpression += " x ";
+        }
+        else {
+            ResultTextField.setText(ResultTextField.getText().concat("x"));
+            graphExpression += " x ";
+        }
+    }
+    private void OperatorButtonActionPerformed(java.awt.event.ActionEvent evt){
+        Object source = evt.getSource();
+
+        String opText ="";
+        String expText = "";
+
+        if(source instanceof JButton){
+            if(source == SqrtButton) {
+                opText = "sqrt(";
+                expText = "sqrt ( ";
+            }
+            else if(source == SquaredButton) {
+                opText ="^2";
+                expText = " ^ 2";
+            }
+            else if(source == InverseButton){
+                opText = "^-1";
+                expText = " ^ -1";
+
+            }
+            else if(source == MultiplyButton){
+                opText = "*";
+                expText = " * ";
+            }
+            else if(source == DivideButton){
+                opText = "/";
+                expText = " / ";
+            }
+            else if(source == AddButton){
+                opText = "+";
+                expText = " + ";
+            }
+            else if(source == SubtractButton){
+                opText = "-";
+                expText = " - ";
+            }
+            else{
+                opText = "";
+                expText = "";
+            }
+        }
+
+
+
+        graphExpression += (expText);
+        ResultTextField.setText(ResultTextField.getText().concat(opText));
+    }
+
+    /*private void UnaryOperationPerformed(java.awt.event.ActionEvent evt) {
         Object source = evt.getSource();
         op1 = Double.parseDouble(ResultTextField.getText());
 
@@ -472,8 +577,10 @@ public class JavaCalcUI extends javax.swing.JFrame {
 
     private void BinaryOperationPerformed(java.awt.event.ActionEvent evt) {
         Object source = evt.getSource();
-        if(ans == 0)
+        if(ans == 0) {
             op1 = Double.parseDouble(ResultTextField.getText());
+
+        }
         else
             op1 = ans;
 
@@ -487,7 +594,7 @@ public class JavaCalcUI extends javax.swing.JFrame {
             operator = Operator.Divide;
         else //MultiplyButton
             operator = Operator.Multiply;
-    }
+    }*/
 
     private void ModifierActionPerformed(java.awt.event.ActionEvent evt) {
         Object source = evt.getSource();
@@ -496,6 +603,7 @@ public class JavaCalcUI extends javax.swing.JFrame {
 
         if(source == ClearButton) {
             ResultTextField.setText("0");
+            graphExpression = "";
             result = 0;
             op1 = 0;
             op2 = 0;
@@ -508,16 +616,20 @@ public class JavaCalcUI extends javax.swing.JFrame {
             else {
                 sb.deleteCharAt(sb.length() - 1);
                 ResultTextField.setText(sb.toString());
+
             }
         }
         else { //NegateButton
             if(currentText.matches("0")) {/*Do nothing*/}
             else if(!currentText.contains("-")) {
                 sb.insert(0, "-");
+                graphExpression.trim();
+                graphExpression = "-1 * " + graphExpression;
                 ResultTextField.setText(sb.toString());
             }
             else { // currentText.contains("-")
                 sb.deleteCharAt(0);
+                graphExpression = "-1 * " + graphExpression;
                 ResultTextField.setText(sb.toString());
             }
         }
@@ -525,42 +637,27 @@ public class JavaCalcUI extends javax.swing.JFrame {
 
     private void DecimalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DecimalButtonActionPerformed
         String currentText = ResultTextField.getText();
-        if(currentText.contains(".")) {/*Do nothing*/}
+        if(currentText.contains(".") || !lastNum) {/*Do nothing*/}
         else
             ResultTextField.setText(currentText.concat("."));
     }//GEN-LAST:event_DecimalButtonActionPerformed
 
     private void EqualsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EqualsButtonActionPerformed
-        if(op1 == ans || ans == 0)
-            op2 = Double.parseDouble(ResultTextField.getText());
-        else {
-            op1 = ans;
-            op2 = result;
+
+        ArrayList<DataPoint2D> data = calcModule.evaluateExpression(graphExpression);
+        series = new XYSeries("series");
+        for(DataPoint2D pt : data){
+            series.add(pt.getX(), pt.getY());
         }
+        dataset.removeAllSeries();
+        dataset.addSeries(series);
 
-        switch(operator) {
-            case Add: result = op1 + op2;
-                break;
+        chart.getXYPlot().getRenderer().setSeriesVisibleInLegend(0, false);
+        cp.repaint();
 
-            case Subtract: result = op1 - op2;
-                break;
-
-            case Divide: result = op1 / op2;
-                break;
-
-            case Multiply: result = op1 * op2;
-                break;
-
-            case Sqrt:
-            case Inverse:
-            case Square:
-                break;
-
-            default: result = 0;
+        if(!graphExpression.contains(Character.toString('x'))) {
+            ResultTextField.setText(Double.toString(data.get(0).getY()));
         }
-        ans = result;
-        ResultTextField.setText(Double.toString(result));
-        result = op2;
     }//GEN-LAST:event_EqualsButtonActionPerformed
 
     private void NumberActionPerformed(java.awt.event.ActionEvent evt) {
@@ -592,14 +689,16 @@ public class JavaCalcUI extends javax.swing.JFrame {
         // Manipulate ResultTextField accordingly
         if(currentText.matches("0")) {
             if(num.matches("0")) {/*Do nothing*/}
-            else
+            else {
                 ResultTextField.setText(num);
+                graphExpression += num;
+                lastNum = true;
+            }
         }
-        else
+        else {
             ResultTextField.setText(currentText.concat(num));
-    }
-    private void GraphActionPerformed(java.awt.event.ActionEvent evt){
-
+            graphExpression += num;
+        }
     }
     /**
      * @param args the command line arguments
@@ -639,6 +738,8 @@ public class JavaCalcUI extends javax.swing.JFrame {
     private double result, op1, op2, ans;
     private Operator operator;
     //private GraphTypeModel graphTypeModel = new GraphTypeModel();
+    private XYSeries series;
+    private XYSeriesCollection dataset;
     private JFreeChart chart;
     private ChartPanel cp;
     //private GraphingData data = new GraphingData();
@@ -661,9 +762,12 @@ public class JavaCalcUI extends javax.swing.JFrame {
     private javax.swing.JButton DeleteButton;
     private javax.swing.JButton DivideButton;
     private javax.swing.JButton EqualsButton;
-    private javax.swing.JButton GraphButton;
+    //private javax.swing.JButton GraphButton;
     private javax.swing.JPanel GraphPanel;
-    private javax.swing.JTextField GraphTextField;
+    //private javax.swing.JTextField GraphTextField;
+    private javax.swing.JButton XButton;
+    private javax.swing.JButton LeftBracketButton;
+    private javax.swing.JButton RightBracketButton;
     private javax.swing.JButton InverseButton;
     private javax.swing.JButton MultiplyButton;
     private javax.swing.JButton NegateButton;

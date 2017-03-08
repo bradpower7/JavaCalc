@@ -37,7 +37,7 @@ public class ExpressionEvaluator {
         _opMethods.put("-", (ArrayList<Double> operands) ->  operands.get(0) - operands.get(1)  );
         _opMethods.put("*", (ArrayList<Double> operands) ->  operands.get(0) * operands.get(1)  );
         _opMethods.put("/", (ArrayList<Double> operands) ->  operands.get(0) / operands.get(1)  );
-        _opMethods.put("^", (ArrayList<Double> operands) ->  Math.pow(operands.get(0), operands.get(1))  );
+        _opMethods.put("^", (ArrayList<Double> operands) ->  Math.pow(operands.get(1), operands.get(0))  );
 
         // Operator & function number of operands
         _opFuncNumOfOperands = new HashMap<>();
@@ -108,7 +108,8 @@ public class ExpressionEvaluator {
      * @return list of tokens in postfix form
      */
     private LinkedList<Token> infixToPostfix(String ex){
-        String[] split = ex.split("\\s");
+        ex = ex.trim();
+        String[] split = ex.split("\\s+");
         LinkedList<Token> tokens = new LinkedList<>();
 
         // Turn everything into Token objects

@@ -31,6 +31,9 @@ public class OperatorToken extends Token {
                 if ((this.getAssociativity() == 'L' && (this.getPrecedence() <= ((OperatorToken) temp).getPrecedence()) ||
                         this.getAssociativity() == 'R' && this.getPrecedence() < ((OperatorToken) temp).getPrecedence())) {
                     output.add(stack.pop());        // remove op from stack, add to queue
+                    if(stack.isEmpty()){
+                        break;
+                    }
                     temp = stack.peek();
                 } else {
                     break;
