@@ -512,7 +512,9 @@ public class JavaCalcUI extends javax.swing.JFrame {
 
         String opText ="";
         String expText = "";
-
+        if(ResultTextField.getText().matches("^0$")){
+            ResultTextField.setText("");
+        }
         if(source instanceof JButton){
             if(source == SqrtButton) {
                 opText = "sqrt(";
@@ -549,52 +551,9 @@ public class JavaCalcUI extends javax.swing.JFrame {
             }
         }
 
-
-
         graphExpression += (expText);
         ResultTextField.setText(ResultTextField.getText().concat(opText));
     }
-
-    /*private void UnaryOperationPerformed(java.awt.event.ActionEvent evt) {
-        Object source = evt.getSource();
-        op1 = Double.parseDouble(ResultTextField.getText());
-
-        if(source == SqrtButton) {
-            result = Math.sqrt(op1);
-            operator = Operator.Sqrt;
-        }
-        else if(source == SquaredButton) {
-            result = op1 * op1;
-            operator = Operator.Square;
-        }
-        else { //InverseButton
-            result = 1 / op1;
-            operator = Operator.Inverse;
-        }
-        ans = result;
-        ResultTextField.setText(Double.toString(result));
-    }
-
-    private void BinaryOperationPerformed(java.awt.event.ActionEvent evt) {
-        Object source = evt.getSource();
-        if(ans == 0) {
-            op1 = Double.parseDouble(ResultTextField.getText());
-
-        }
-        else
-            op1 = ans;
-
-        ResultTextField.setText("");
-
-        if(source == AddButton)
-            operator = Operator.Add;
-        else if (source == SubtractButton)
-            operator = Operator.Subtract;
-        else if(source == DivideButton)
-            operator = Operator.Divide;
-        else //MultiplyButton
-            operator = Operator.Multiply;
-    }*/
 
     private void ModifierActionPerformed(java.awt.event.ActionEvent evt) {
         Object source = evt.getSource();
@@ -611,8 +570,10 @@ public class JavaCalcUI extends javax.swing.JFrame {
         }
         else if(source == DeleteButton) {
             if(currentText.matches("0")) {/*Do nothing*/}
-            else if(currentText.length() == 1)
+            else if(currentText.length() == 1) {
                 ResultTextField.setText("0");
+                graphExpression = "";
+            }
             else {
                 sb.deleteCharAt(sb.length() - 1);
                 ResultTextField.setText(sb.toString());
@@ -637,9 +598,11 @@ public class JavaCalcUI extends javax.swing.JFrame {
 
     private void DecimalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DecimalButtonActionPerformed
         String currentText = ResultTextField.getText();
-        if(currentText.contains(".") || !lastNum) {/*Do nothing*/}
-        else
-            ResultTextField.setText(currentText.concat("."));
+        /*if(currentText.contains(".")) {/*Do nothing}*/
+        /*else if(currentText.)
+        else*/
+            ResultTextField.setText(ResultTextField.getText().concat("."));
+            graphExpression+=".";
     }//GEN-LAST:event_DecimalButtonActionPerformed
 
     private void EqualsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EqualsButtonActionPerformed

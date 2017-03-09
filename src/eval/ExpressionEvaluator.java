@@ -1,5 +1,6 @@
 package eval;
 
+import java.sql.Array;
 import java.util.*;
 
 
@@ -11,62 +12,27 @@ public class ExpressionEvaluator {
    // private ArrayList<String> _functions;
    // private ArrayList<String> _operators;
 
-    private HashMap<String, Evaluable> _funcMethods;
-    private HashMap<String, Evaluable> _opMethods;
-
-    private HashMap<String, Integer> _opPrecedences;
-    private HashMap<String, Character> _opAssociativites;
-    private HashMap<String, Integer> _opFuncNumOfOperands;
-
+    private List<Function> functions;
     private LinkedList<Token> rpnTokens;
 
     public ExpressionEvaluator(String ex){
-        // ***BAD CODE AHEAD***
-        // All of this will be refactored later
+
+        functions = new ArrayList<>();
+
         // Creates math function methods
-        _funcMethods = new HashMap<>();
-        _funcMethods.put("sin", (ArrayList<Double> operands) ->  Math.sin(operands.get(0)) );
-        _funcMethods.put("cos", (ArrayList<Double> operands) ->  Math.cos(operands.get(0)) );
-        _funcMethods.put("tan", (ArrayList<Double> operands) ->  Math.tan(operands.get(0)) );
-        _funcMethods.put("log10", (ArrayList<Double> operands) ->  Math.log10(operands.get(0)) );
-        _funcMethods.put("log", (ArrayList<Double> operands) ->  Math.log(operands.get(0)) );
+        functions.add(new Function("sin", (List<Double> operands) -> Math.sin(operands.get(0)), 1));
+        functions.add(new Function("cos", (List<Double> operands) -> Math.cos(operands.get(0)), 1));
+        functions.add(new Function("tan", (List<Double> operands) ->  Math.tan(operands.get(0)), 1));
+        functions.add(new Function("log10", (List<Double> operands) ->  Math.log10(operands.get(0)), 1));
+        functions.add(new Function("log", (List<Double> operands) ->  Math.log(operands.get(0)), 1 ));
+        functions.add(new Function("sqrt", (List<Double> operands) -> Math.sqrt(operands.get(0)), 1));
 
         // Creates operator methods
-        _opMethods = new HashMap<>();
-        _opMethods.put("+", (ArrayList<Double> operands) ->  operands.get(0) + operands.get(1)  );
-        _opMethods.put("-", (ArrayList<Double> operands) ->  operands.get(0) - operands.get(1)  );
-        _opMethods.put("*", (ArrayList<Double> operands) ->  operands.get(0) * operands.get(1)  );
-        _opMethods.put("/", (ArrayList<Double> operands) ->  operands.get(0) / operands.get(1)  );
-        _opMethods.put("^", (ArrayList<Double> operands) ->  Math.pow(operands.get(1), operands.get(0))  );
-
-        // Operator & function number of operands
-        _opFuncNumOfOperands = new HashMap<>();
-        _opFuncNumOfOperands.put("+", 2);
-        _opFuncNumOfOperands.put("-", 2);
-        _opFuncNumOfOperands.put("*", 2);
-        _opFuncNumOfOperands.put("/", 2);
-        _opFuncNumOfOperands.put("^", 2);
-        _opFuncNumOfOperands.put("sin", 1);
-        _opFuncNumOfOperands.put("cos", 1);
-        _opFuncNumOfOperands.put("tan", 1);
-        _opFuncNumOfOperands.put("log10", 1);
-        _opFuncNumOfOperands.put("log", 1);
-
-        // Operator precedences (used for order of operations)
-        _opPrecedences = new HashMap<>();
-        _opPrecedences.put("+", 2);
-        _opPrecedences.put("-", 2);
-        _opPrecedences.put("*", 3);
-        _opPrecedences.put("/", 3);
-        _opPrecedences.put("^", 4);
-
-        // Operator associativities (from which direction are they evaluated)
-        _opAssociativites = new HashMap<>();
-        _opAssociativites.put("+", 'L');
-        _opAssociativites.put("-", 'L');
-        _opAssociativites.put("*", 'L');
-        _opAssociativites.put("/", 'L');
-        _opAssociativites.put("^", 'R');
+        functions.add(new Operator("+", (List<Double> operands) ->  operands.get(0) + operands.get(1), 2, true ));
+        functions.add(new Operator("-", (List<Double> operands) ->  operands.get(1) - operands.get(0), 2, true ));
+        functions.add(new Operator("*", (List<Double> operands) ->  operands.get(0) * operands.get(1), 3, true ));
+        functions.add(new Operator("/", (List<Double> operands) ->  operands.get(0) / operands.get(1), 3, true ));
+        functions.add(new Operator("^", (List<Double> operands) ->  Math.pow(operands.get(1), operands.get(0)), 4, false ));
 
         rpnTokens = infixToPostfix(ex);
 
@@ -156,7 +122,7 @@ public class ExpressionEvaluator {
         if(isDbl){
             return new NumberToken(str);
         }
-        else if(_funcMethods.containsKey(str)){
+        else if(){
             return new FunctionToken(str, _funcMethods.get(str), _opFuncNumOfOperands.get(str));        // NOTE: not all functions have 1 operand. change later
         }
         else if(_opMethods.containsKey(str)){
