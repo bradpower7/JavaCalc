@@ -6,21 +6,17 @@ import java.util.List;
 /**
  * Created by Brad Power on 3/9/17 for JavaCalc.
  */
-public class Function {
+public class Function extends TokenType{
 
-    protected String str;
     protected Evaluable func;
     protected int numOperands;
 
-    public Function(String str, Evaluable function, int numOperands){
-        this.str = str;
+    public Function(String text, Evaluable function, int numOperands){
+        super(text);
         func = function;
         this.numOperands = numOperands;
     }
 
-    public String getName(){
-        return str;
-    }
     public Evaluable getFunc(){
         return func;
     }
@@ -28,9 +24,9 @@ public class Function {
         return numOperands;
     }
     public Double evaluate(List<Double> inputs){
-        if(inputs.size() != numOperands){
-            throw new Exception("Bruh wyd");
+        if(inputs.size() == numOperands){
+            return func.eval(inputs);
         }
-        return func.eval(inputs);
+        return null;
     }
 }
