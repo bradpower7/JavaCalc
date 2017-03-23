@@ -1,7 +1,6 @@
 package eval;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Stack;
 
@@ -10,14 +9,14 @@ import java.util.Stack;
  */
 public class FunctionToken extends Token {
 
-    private int _numOperands;
+    private int numOperands;
 
-    protected Evaluable _funcMethod;      // this stores a method
+    protected Evaluable funcMethod;      // this stores a method
 
     public FunctionToken(String token, Evaluable funcMethod, int numOperands){
         super(token);
-        _funcMethod = funcMethod;
-        _numOperands = numOperands;
+        this.funcMethod = funcMethod;
+        this.numOperands = numOperands;
     }
     @Override
     public void toPostfix(LinkedList<Token> output, Stack<Token> stack) {
@@ -26,12 +25,12 @@ public class FunctionToken extends Token {
 
     @Override
     public void evaluateRpn(Stack<Double> evalStack) {
-        if(evalStack.size() >= _numOperands){
+        if(evalStack.size() >= numOperands){
             ArrayList<Double> operands = new ArrayList<>();
-            for(int i=0; i<_numOperands; i++){
+            for(int i=0; i<numOperands; i++){
                 operands.add(evalStack.pop());
             }
-            evalStack.push(_funcMethod.eval(operands));     // wacky.
+            evalStack.push(funcMethod.eval(operands));
         }
     }
 }

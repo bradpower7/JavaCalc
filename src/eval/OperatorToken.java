@@ -1,26 +1,20 @@
 package eval;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Stack;
 
 /**
  * Created by Brad Power on 3/6/17 for JavaCalc.
  */
-public class OperatorToken extends Token {
+public class OperatorToken extends FunctionToken {
 
-    private int _prec;
-    private char _assoc;        // 'L' or 'R'
-    private int _numOperands;
+    private int prec;
+    private boolean assocLeft;
 
-    private Evaluable _opMethod;
-
-    public OperatorToken(String token, int precedence, int numOperands, char associativity, Evaluable opMethod){
-        super(token);
-        _prec = precedence;
-        _assoc = associativity;
-        _numOperands = numOperands;
-        _opMethod = opMethod;
+    public OperatorToken(String token, Evaluable opMethod, int precedence, boolean associativityLeft){
+        super(token, opMethod, 2);
+        this.prec = precedence;
+        assocLeft = associativityLeft;
     }
 
     @Override
@@ -28,8 +22,8 @@ public class OperatorToken extends Token {
         if (!stack.isEmpty()) {
             Token temp = stack.peek();
             while (temp.getClass().equals(this.getClass())) {
-                if ((this.getAssociativity() == 'L' && (this.getPrecedence() <= ((OperatorToken) temp).getPrecedence()) ||
-                        this.getAssociativity() == 'R' && this.getPrecedence() < ((OperatorToken) temp).getPrecedence())) {
+                if ((this.isAssociativityLeft() && (this.getPrecedence() <= ((OperatorToken) temp).getPrecedence()) ||
+                        !this.isAssociativityLeft() && this.getPrecedence() < ((OperatorToken) temp).getPrecedence())) {
                     output.add(stack.pop());        // remove op from stack, add to queue
                     if(stack.isEmpty()){
                         break;
@@ -42,21 +36,17 @@ public class OperatorToken extends Token {
         }
         stack.push(this);
     }
-    @Override
-    public void evaluateRpn(Stack<Double> evalStack) {
-        if(evalStack.size() >= _numOperands){
-            ArrayList<Double> operands = new ArrayList<>();
-            for(int i=0; i<_numOperands; i++){
-                operands.add(evalStack.pop());
-            }
-            evalStack.push(_opMethod.eval(operands));     // wacky.
-        }
 
-    }
     public int getPrecedence(){
-        return _prec;
+        return prec;
     }
-    public char getAssociativity(){
-        return _assoc;
+    public boolean isAssociativityLeft(){
+        return assocLeft;
+    }
+
+
+    @Override
+    public boolean matches(String text){
+        return this.token.matches("\\" + text);
     }
 }

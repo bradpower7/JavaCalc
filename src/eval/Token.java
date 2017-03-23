@@ -7,19 +7,14 @@ import java.util.Stack;
  * Created by Brad Power on 3/3/17 for JavaCalc.
  */
 public abstract class Token {
-    protected String _token;
-    //private TokenType _type;
+    protected String token;
 
     public Token(String token){
-        _token = token;
-        //_type = type;
+        this.token = token;
     }
 
     public String getToken(){
-        return _token;
-    }
-    public void setToken(String str){
-        _token = str;
+        return token;
     }
 
     /**
@@ -35,14 +30,10 @@ public abstract class Token {
      */
     public abstract void evaluateRpn(Stack<Double> evalStack);
 
-   /* public TokenType getType(){
-        return _type;
+
+    public boolean matches(String text){
+        return this.token.matches(text);
     }
-    public void setType(TokenType type){
-        _type = type;
-    }*/
-
-
 }
 
 

@@ -14,10 +14,10 @@ public class ParenthesisToken extends Token {
 
     @Override
     public void toPostfix(LinkedList<Token> output, Stack<Token> stack) {
-        if(_token.equals("(")){
+        if(token.equals("(")){
             stack.push(this);
         }
-        else if(_token.equals(")")){
+        else if(token.equals(")")){
             while(!stack.isEmpty()){
                 if(!stack.peek().getToken().equals("(")){
                     output.add(stack.pop());
@@ -35,6 +35,6 @@ public class ParenthesisToken extends Token {
 
     @Override
     public void evaluateRpn(Stack<Double> evalStack) {
-
+        // this is intentionally blank.
     }
 }
