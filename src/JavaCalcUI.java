@@ -607,7 +607,7 @@ public class JavaCalcUI extends javax.swing.JFrame {
 
     private void EqualsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EqualsButtonActionPerformed
 
-        ArrayList<DataPoint2D> data = calcModule.evaluateExpression(graphExpression);
+        ArrayList<DataPoint2D> data = calcModule.evaluateExpression(ResultTextField.getText());
         series = new XYSeries("series");
         for(DataPoint2D pt : data){
             series.add(pt.getX(), pt.getY());
