@@ -22,4 +22,10 @@ public class NumberToken extends Token {
     public void evaluateRpn(Stack<Double> evalStack){
         evalStack.push(Double.parseDouble(getToken()));
     }
+
+    @Override
+    public boolean matches(String text){
+        return text.matches("[-+]?[0-9]*\\.?[0-9]+");
+    }
+
 }

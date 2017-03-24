@@ -37,4 +37,9 @@ public class ParenthesisToken extends Token {
     public void evaluateRpn(Stack<Double> evalStack) {
         // this is intentionally blank.
     }
+
+    @Override
+    public boolean matches(String text){
+        return text.matches("\\" + this.token);
+    }
 }

@@ -32,7 +32,7 @@ public abstract class Token {
 
 
     public boolean matches(String text){
-        return this.token.matches(text);
+        return text.matches(this.token);
     }
 }
 

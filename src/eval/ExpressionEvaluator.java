@@ -96,11 +96,15 @@ public class ExpressionEvaluator {
             preStr = "";
             postStr = "";
 
+
+
             // Keep going until no more instances found
-            while(i != -1){
+            /*while(i != -1){
                 // Functions and variables have some similar operations
                 if(token instanceof FunctionToken || token instanceof VariableToken){
+                    if(text.equals("-")){
 
+                    }
                     // Checking for edge cases regarding the character before the token requires the token index to not be 0
                     if(i > 0) {
 
@@ -141,7 +145,7 @@ public class ExpressionEvaluator {
                 }
                 ex = ex.substring(0,i) + preStr + ex.substring(i,i+text.length()) + postStr + ex.substring(i+text.length(), ex.length());       // inserts whitespace before token
                 i = ex.indexOf(text, i+text.length()+postStr.length());
-            }
+            }*/
         }
         return ex.split("\\s+");
     }
@@ -153,7 +157,6 @@ public class ExpressionEvaluator {
      */
     private LinkedList<Token> infixToPostfix(String ex){
         ex = ex.trim();
-        //String[] split = ex.split("\\s+");
         String[] split = parseExpression(ex);
         LinkedList<Token> tokens = new LinkedList<>();
 
