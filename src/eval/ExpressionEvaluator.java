@@ -19,15 +19,16 @@ public class ExpressionEvaluator {
         tokenTypes = new ArrayList<>();
 
         // Creates math function methods
+        tokenTypes.add(new FunctionToken("arcsin", (List<Double> operands) -> Math.asin(operands.get(0)), 1));
+        tokenTypes.add(new FunctionToken("arccos", (List<Double> operands) -> Math.acos(operands.get(0)), 1));
+        tokenTypes.add(new FunctionToken("arctan", (List<Double> operands) -> Math.atan(operands.get(0)), 1));
         tokenTypes.add(new FunctionToken("sin", (List<Double> operands) -> Math.sin(operands.get(0)), 1));
         tokenTypes.add(new FunctionToken("cos", (List<Double> operands) -> Math.cos(operands.get(0)), 1));
         tokenTypes.add(new FunctionToken("tan", (List<Double> operands) -> Math.tan(operands.get(0)), 1));
         tokenTypes.add(new FunctionToken("log10", (List<Double> operands) -> Math.log10(operands.get(0)), 1));
         tokenTypes.add(new FunctionToken("ln", (List<Double> operands) -> Math.log(operands.get(0)), 1 ));
         tokenTypes.add(new FunctionToken("sqrt", (List<Double> operands) -> Math.sqrt(operands.get(0)), 1));
-        tokenTypes.add(new FunctionToken("arcsin", (List<Double> operands) -> Math.asin(operands.get(0)), 1));
-        tokenTypes.add(new FunctionToken("arccos", (List<Double> operands) -> Math.acos(operands.get(0)), 1));
-        tokenTypes.add(new FunctionToken("arctan", (List<Double> operands) -> Math.atan(operands.get(0)), 1));
+        //tokenTypes.add(new FunctionToken("e", (List<Double> operands) -> Math.exp(operands.get(0)), 1));
 
         // Creates operator methods
         tokenTypes.add(new OperatorToken("+", (List<Double> operands) ->  operands.get(0) + operands.get(1), 2, true ));
@@ -42,6 +43,9 @@ public class ExpressionEvaluator {
 
         // Add variables
         tokenTypes.add(new VariableToken("x"));
+
+        // Add constants
+        tokenTypes.add(new ConstantToken("e", Math.E));
 
 
         // Reference commonly used tokens
@@ -65,6 +69,9 @@ public class ExpressionEvaluator {
         for(Token tk : rpnTokens){
             if(tk instanceof VariableToken){
                 tk = new NumberToken(input.toString());
+            }
+            else if(tk instanceof ConstantToken){
+                tk = new NumberToken(((ConstantToken) tk).getValue().toString());
             }
             tk.evaluateRpn(evalStack);
         }
@@ -114,6 +121,13 @@ public class ExpressionEvaluator {
 
             // Finds all instances of a token in the string, separates by whitespace
             while(i != -1){
+                if(text.equals("sin") || text.equals("cos") || text.equals("tan")){
+                    if(i > 2){
+                        if(ex.substring(i-3,i).equals("arc")){
+                            preStr = "";
+                        }
+                    }
+                }
                 ex = ex.substring(0,i) + preStr + ex.substring(i,i+text.length()) + postStr + ex.substring(i+text.length(), ex.length());       // inserts whitespace before token
                 i = ex.indexOf(text, i+text.length()+postStr.length());
             }
