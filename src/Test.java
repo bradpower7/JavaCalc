@@ -993,9 +993,93 @@ public class Test extends JFrame {
         titleTextField = new JTextField();
         titleTextField.getDocument().addDocumentListener(new TextChanger());
         domainTextField = new JFormattedTextField();
-        domainTextField.getDocument().addDocumentListener(new TextChanger());
+        domainTextField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                String text = domainTextField.getText();
+                if (text.matches("^[-+]?[0-9]*\\.?[0-9]+,\\s*[-+]?[0-9]*\\.?[0-9]+$")) {
+                    String[] strings = text.split(",\\s*");
+                    if (strings.length == 2) {
+                        Double one = Double.parseDouble(strings[0]);
+                        Double two = Double.parseDouble(strings[1]);
+
+                        domain = new Range(Double.min(one, two), Double.max(one, two));
+                    }
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                String text = domainTextField.getText();
+                if (text.matches("^[-+]?[0-9]*\\.?[0-9]+,\\s*[-+]?[0-9]*\\.?[0-9]+$")) {
+                    String[] strings = text.split(",\\s*");
+                    if (strings.length == 2) {
+                        Double one = Double.parseDouble(strings[0]);
+                        Double two = Double.parseDouble(strings[1]);
+
+                        domain = new Range(Double.min(one, two), Double.max(one, two));
+                    }
+                }
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                String text = domainTextField.getText();
+                if (text.matches("^[-+]?[0-9]*\\.?[0-9]+,\\s*[-+]?[0-9]*\\.?[0-9]+$")) {
+                    String[] strings = text.split(",\\s*");
+                    if (strings.length == 2) {
+                        Double one = Double.parseDouble(strings[0]);
+                        Double two = Double.parseDouble(strings[1]);
+
+                        domain = new Range(Double.min(one, two), Double.max(one, two));
+                    }
+                }
+            }
+        });
         rangeTextField = new JFormattedTextField();
-        rangeTextField.getDocument().addDocumentListener(new TextChanger());
+        rangeTextField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                String text = rangeTextField.getText();
+                if (text.matches("^[-+]?[0-9]*\\.?[0-9]+,\\s*[-+]?[0-9]*\\.?[0-9]+$")) {
+                    String[] strings = text.split(",\\s*");
+                    if (strings.length == 2) {
+                        Double one = Double.parseDouble(strings[0]);
+                        Double two = Double.parseDouble(strings[1]);
+
+                        range = new Range(Double.min(one, two), Double.max(one, two));
+                    }
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                String text = rangeTextField.getText();
+                if (text.matches("^[-+]?[0-9]*\\.?[0-9]+,\\s*[-+]?[0-9]*\\.?[0-9]+$")) {
+                    String[] strings = text.split(",\\s*");
+                    if (strings.length == 2) {
+                        Double one = Double.parseDouble(strings[0]);
+                        Double two = Double.parseDouble(strings[1]);
+
+                        range = new Range(Double.min(one, two), Double.max(one, two));
+                    }
+                }
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                String text = rangeTextField.getText();
+                if (text.matches("^[-+]?[0-9]*\\.?[0-9]+,\\s*[-+]?[0-9]*\\.?[0-9]+$")) {
+                    String[] strings = text.split(",\\s*");
+                    if (strings.length == 2) {
+                        Double one = Double.parseDouble(strings[0]);
+                        Double two = Double.parseDouble(strings[1]);
+
+                        range = new Range(Double.min(one, two), Double.max(one, two));
+                    }
+                }
+            }
+        });
 
 
         class ColourChanger extends MouseAdapter {

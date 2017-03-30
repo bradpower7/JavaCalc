@@ -15,9 +15,9 @@ public class CalculationModule {
     private Double _increment;
 
     public CalculationModule(){
-        _pointsPerUnit = 40;
-        _max = 5.0;
-        _min = -5.0;
+        _pointsPerUnit = 10;
+        _max = 50.0;
+        _min = -50.0;
 
         _increment = 1.0/_pointsPerUnit;
     }
@@ -25,9 +25,15 @@ public class CalculationModule {
     public ArrayList<DataPoint2D> evaluateExpression(String ex){
         ExpressionEvaluator evaluator = new ExpressionEvaluator(ex);
         ArrayList<DataPoint2D> data = new ArrayList<>();
+
+
         for(Double val = _min; val < _max; val+=_increment){
-            data.add(new DataPoint2D(val, evaluator.evaluate(val)));        // evaluates at input, adds to data
+            DataPoint2D dataPoint = new DataPoint2D(val, evaluator.evaluate(val));
+            data.add(dataPoint);        // evaluates at input, adds to data
         }
+
+        // calculate min/max
+
         return data;
     }
 
