@@ -23,14 +23,17 @@ public class ExpressionEvaluator {
         tokenTypes.add(new FunctionToken("cos", (List<Double> operands) -> Math.cos(operands.get(0)), 1));
         tokenTypes.add(new FunctionToken("tan", (List<Double> operands) -> Math.tan(operands.get(0)), 1));
         tokenTypes.add(new FunctionToken("log10", (List<Double> operands) -> Math.log10(operands.get(0)), 1));
-        tokenTypes.add(new FunctionToken("log", (List<Double> operands) -> Math.log(operands.get(0)), 1 ));
+        tokenTypes.add(new FunctionToken("ln", (List<Double> operands) -> Math.log(operands.get(0)), 1 ));
         tokenTypes.add(new FunctionToken("sqrt", (List<Double> operands) -> Math.sqrt(operands.get(0)), 1));
+        tokenTypes.add(new FunctionToken("arcsin", (List<Double> operands) -> Math.asin(operands.get(0)), 1));
+        tokenTypes.add(new FunctionToken("arccos", (List<Double> operands) -> Math.acos(operands.get(0)), 1));
+        tokenTypes.add(new FunctionToken("arctan", (List<Double> operands) -> Math.atan(operands.get(0)), 1));
 
         // Creates operator methods
         tokenTypes.add(new OperatorToken("+", (List<Double> operands) ->  operands.get(0) + operands.get(1), 2, true ));
         tokenTypes.add(new OperatorToken("-", (List<Double> operands) ->  operands.get(1) - operands.get(0), 2, true ));
         tokenTypes.add(new OperatorToken("*", (List<Double> operands) ->  operands.get(0) * operands.get(1), 3, true ));
-        tokenTypes.add(new OperatorToken("/", (List<Double> operands) ->  operands.get(0) / operands.get(1), 3, true ));
+        tokenTypes.add(new OperatorToken("/", (List<Double> operands) ->  operands.get(1) / operands.get(0), 3, true ));
         tokenTypes.add(new OperatorToken("^", (List<Double> operands) ->  Math.pow(operands.get(1), operands.get(0)), 4, false ));
 
         // Add brackets

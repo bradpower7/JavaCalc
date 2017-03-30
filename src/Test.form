@@ -1,0 +1,648 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Test">
+  <grid id="27dc6" binding="mainPanel" layout-manager="GridBagLayout">
+    <constraints>
+      <xy x="20" y="20" width="642" height="452"/>
+    </constraints>
+    <properties>
+      <autoscrolls value="false"/>
+      <doubleBuffered value="true"/>
+      <enabled value="false"/>
+      <opaque value="false"/>
+    </properties>
+    <border type="line"/>
+    <children>
+      <grid id="324ee" binding="numberPanel" layout-manager="GridBagLayout">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <opaque value="false"/>
+        </properties>
+        <border type="none">
+          <font/>
+          <title-color color="-4473925"/>
+        </border>
+        <children>
+          <component id="67d2b" class="javax.swing.JButton" binding="Button7" custom-create="true">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag top="3" left="3" bottom="3" right="3" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <autoscrolls value="false"/>
+              <background color="-10921639"/>
+              <borderPainted value="false"/>
+              <contentAreaFilled value="true"/>
+              <focusPainted value="true"/>
+              <font name="Lao UI" size="18" style="0"/>
+              <foreground color="-1"/>
+              <maximumSize width="50" height="50"/>
+              <minimumSize width="50" height="50"/>
+              <preferredSize width="50" height="50"/>
+              <selected value="false"/>
+              <text value="7"/>
+            </properties>
+          </component>
+          <component id="ff995" class="javax.swing.JButton" binding="Button8" custom-create="true">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag top="3" left="3" bottom="3" right="3" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-10921639"/>
+              <borderPainted value="false"/>
+              <font name="Lao UI" size="18" style="0"/>
+              <foreground color="-1"/>
+              <maximumSize width="50" height="50"/>
+              <minimumSize width="50" height="50"/>
+              <preferredSize width="50" height="50"/>
+              <text value="8"/>
+            </properties>
+          </component>
+          <component id="6fbbb" class="javax.swing.JButton" binding="Button9" custom-create="true">
+            <constraints>
+              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag top="3" left="3" bottom="3" right="3" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-10921639"/>
+              <borderPainted value="false"/>
+              <font name="Lao UI" size="18" style="0"/>
+              <foreground color="-1"/>
+              <maximumSize width="50" height="50"/>
+              <minimumSize width="50" height="50"/>
+              <preferredSize width="50" height="50"/>
+              <text value="9"/>
+            </properties>
+          </component>
+          <component id="7597c" class="javax.swing.JButton" binding="Button4" custom-create="true">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag top="3" left="3" bottom="3" right="3" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-10921639"/>
+              <borderPainted value="false"/>
+              <font name="Lao UI" size="18" style="0"/>
+              <foreground color="-1"/>
+              <maximumSize width="50" height="50"/>
+              <minimumSize width="50" height="50"/>
+              <preferredSize width="50" height="50"/>
+              <text value="4"/>
+            </properties>
+          </component>
+          <component id="2126f" class="javax.swing.JButton" binding="Button5" custom-create="true">
+            <constraints>
+              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag top="3" left="3" bottom="3" right="3" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-10921639"/>
+              <borderPainted value="false"/>
+              <font name="Lao UI" size="18" style="0"/>
+              <foreground color="-1"/>
+              <maximumSize width="50" height="50"/>
+              <minimumSize width="50" height="50"/>
+              <preferredSize width="50" height="50"/>
+              <text value="5"/>
+            </properties>
+          </component>
+          <component id="b55e1" class="javax.swing.JButton" binding="Button1" custom-create="true">
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag top="3" left="3" bottom="3" right="3" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-10921639"/>
+              <borderPainted value="false"/>
+              <font name="Lao UI" size="18" style="0"/>
+              <foreground color="-1"/>
+              <maximumSize width="50" height="50"/>
+              <minimumSize width="50" height="50"/>
+              <preferredSize width="50" height="50"/>
+              <text value="1"/>
+            </properties>
+          </component>
+          <component id="c34f8" class="javax.swing.JButton" binding="Button2" custom-create="true">
+            <constraints>
+              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag top="3" left="3" bottom="3" right="3" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-10921639"/>
+              <borderPainted value="false"/>
+              <font name="Lao UI" size="18" style="0"/>
+              <foreground color="-1"/>
+              <maximumSize width="50" height="50"/>
+              <minimumSize width="50" height="50"/>
+              <preferredSize width="50" height="50"/>
+              <text value="2"/>
+            </properties>
+          </component>
+          <component id="669b7" class="javax.swing.JButton" binding="Button3" custom-create="true">
+            <constraints>
+              <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag top="3" left="3" bottom="3" right="3" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-10921639"/>
+              <borderPainted value="false"/>
+              <font name="Lao UI" size="18" style="0"/>
+              <foreground color="-1"/>
+              <maximumSize width="50" height="50"/>
+              <minimumSize width="50" height="50"/>
+              <preferredSize width="50" height="50"/>
+              <text value="3"/>
+            </properties>
+          </component>
+          <component id="c957b" class="javax.swing.JButton" binding="Button0" custom-create="true">
+            <constraints>
+              <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag top="3" left="3" bottom="3" right="3" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-10921639"/>
+              <borderPainted value="false"/>
+              <font name="Lao UI" size="18" style="0"/>
+              <foreground color="-1"/>
+              <maximumSize width="100" height="50"/>
+              <minimumSize width="100" height="50"/>
+              <preferredSize width="100" height="50"/>
+              <text value="0"/>
+            </properties>
+          </component>
+          <component id="91f1c" class="javax.swing.JButton" binding="decimalButton" custom-create="true">
+            <constraints>
+              <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag top="3" left="3" bottom="3" right="3" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-10921639"/>
+              <borderPainted value="false"/>
+              <font name="Lao UI" size="18" style="0"/>
+              <foreground color="-1"/>
+              <maximumSize width="50" height="50"/>
+              <minimumSize width="50" height="50"/>
+              <preferredSize width="50" height="50"/>
+              <text value="."/>
+            </properties>
+          </component>
+          <component id="d7375" class="javax.swing.JButton" binding="rightBracketButton" custom-create="true">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag top="3" left="3" bottom="3" right="3" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-10921639"/>
+              <borderPainted value="false"/>
+              <font name="Lao UI" size="18" style="0"/>
+              <foreground color="-1"/>
+              <maximumSize width="50" height="50"/>
+              <minimumSize width="50" height="50"/>
+              <preferredSize width="50" height="50"/>
+              <text value=")"/>
+            </properties>
+          </component>
+          <component id="58671" class="javax.swing.JButton" binding="leftBracketButton" custom-create="true">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag top="3" left="3" bottom="3" right="3" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-10921639"/>
+              <borderPainted value="false"/>
+              <font name="Lao UI" size="18" style="0"/>
+              <foreground color="-1"/>
+              <maximumSize width="50" height="50"/>
+              <minimumSize width="50" height="50"/>
+              <preferredSize width="50" height="50"/>
+              <text value="("/>
+            </properties>
+          </component>
+          <component id="98dfb" class="javax.swing.JButton" binding="xButton" custom-create="true" default-binding="true">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag top="3" left="3" bottom="3" right="3" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-10921639"/>
+              <borderPainted value="false"/>
+              <font name="Lao UI" size="18" style="0"/>
+              <foreground color="-1"/>
+              <maximumSize width="50" height="50"/>
+              <minimumSize width="50" height="50"/>
+              <preferredSize width="50" height="50"/>
+              <text value="x"/>
+            </properties>
+          </component>
+          <component id="9a22b" class="javax.swing.JButton" binding="Button6" custom-create="true">
+            <constraints>
+              <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag top="3" left="3" bottom="3" right="3" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-10921639"/>
+              <borderPainted value="false"/>
+              <font name="Lao UI" size="18" style="0"/>
+              <foreground color="-1"/>
+              <maximumSize width="50" height="50"/>
+              <minimumSize width="50" height="50"/>
+              <preferredSize width="50" height="50"/>
+              <text value="6"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="c457a" binding="modifierPanel" layout-manager="GridBagLayout">
+        <constraints>
+          <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <opaque value="false"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="dade3" class="javax.swing.JButton" binding="fraslMinusButton" custom-create="true" default-binding="true">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag top="3" left="3" bottom="3" right="3" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-10921639"/>
+              <borderPainted value="false"/>
+              <font name="Lao UI" size="18" style="0"/>
+              <foreground color="-1"/>
+              <maximumSize width="100" height="50"/>
+              <minimumSize width="100" height="50"/>
+              <preferredSize width="100" height="50"/>
+              <text value="±"/>
+            </properties>
+          </component>
+          <component id="f7494" class="javax.swing.JButton" binding="sqrtButton" custom-create="true">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag top="3" left="3" bottom="3" right="3" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-10921639"/>
+              <borderPainted value="false"/>
+              <font name="Lao UI" size="18" style="0"/>
+              <foreground color="-1"/>
+              <maximumSize width="100" height="50"/>
+              <minimumSize width="100" height="50"/>
+              <preferredSize width="100" height="50"/>
+              <text value="√"/>
+            </properties>
+          </component>
+          <component id="9b248" class="javax.swing.JButton" binding="invButton" custom-create="true">
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag top="3" left="3" bottom="3" right="3" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-10921639"/>
+              <borderPainted value="false"/>
+              <font name="Lao UI" size="18" style="0"/>
+              <foreground color="-1"/>
+              <maximumSize width="100" height="50"/>
+              <minimumSize width="100" height="50"/>
+              <preferredSize width="100" height="50"/>
+              <text value="1/x"/>
+            </properties>
+          </component>
+          <component id="29711" class="javax.swing.JButton" binding="equalsButton" custom-create="true">
+            <constraints>
+              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag top="3" left="3" bottom="3" right="3" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-10921639"/>
+              <borderPainted value="false"/>
+              <font name="Lao UI" size="18" style="0"/>
+              <foreground color="-1"/>
+              <maximumSize width="100" height="50"/>
+              <minimumSize width="100" height="50"/>
+              <preferredSize width="100" height="50"/>
+              <text value="="/>
+            </properties>
+          </component>
+          <component id="84c9c" class="javax.swing.JButton" binding="CLRButton" custom-create="true" default-binding="true">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag top="3" left="3" bottom="3" right="3" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-10921639"/>
+              <borderPainted value="false"/>
+              <font name="Lao UI" size="18" style="0"/>
+              <foreground color="-1"/>
+              <maximumSize width="100" height="50"/>
+              <minimumSize width="100" height="50"/>
+              <preferredSize width="100" height="50"/>
+              <text value="CLR"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="26ae" binding="functionPanel" layout-manager="GridBagLayout">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <opaque value="false"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="46cdc" class="javax.swing.JButton" binding="log10Button" custom-create="true" default-binding="true">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag top="3" left="3" bottom="3" right="3" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-10921639"/>
+              <borderPainted value="false"/>
+              <font name="Lao UI" size="18" style="0"/>
+              <foreground color="-1"/>
+              <maximumSize width="100" height="50"/>
+              <minimumSize width="100" height="50"/>
+              <preferredSize width="100" height="50"/>
+              <text value="log10"/>
+            </properties>
+          </component>
+          <component id="1c2ed" class="javax.swing.JButton" binding="sinButton" custom-create="true" default-binding="true">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag top="3" left="3" bottom="3" right="3" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-10921639"/>
+              <borderPainted value="false"/>
+              <font name="Lao UI" size="18" style="0"/>
+              <foreground color="-1"/>
+              <maximumSize width="100" height="50"/>
+              <minimumSize width="100" height="50"/>
+              <preferredSize width="100" height="50"/>
+              <text value="sin"/>
+            </properties>
+          </component>
+          <component id="c2333" class="javax.swing.JButton" binding="cosButton" custom-create="true" default-binding="true">
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag top="3" left="3" bottom="3" right="3" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-10921639"/>
+              <borderPainted value="false"/>
+              <font name="Lao UI" size="18" style="0"/>
+              <foreground color="-1"/>
+              <maximumSize width="100" height="50"/>
+              <minimumSize width="100" height="50"/>
+              <preferredSize width="100" height="50"/>
+              <text value="cos"/>
+            </properties>
+          </component>
+          <component id="d40df" class="javax.swing.JButton" binding="tanButton" custom-create="true" default-binding="true">
+            <constraints>
+              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag top="3" left="3" bottom="3" right="3" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-10921639"/>
+              <borderPainted value="false"/>
+              <font name="Lao UI" size="18" style="0"/>
+              <foreground color="-1"/>
+              <maximumSize width="100" height="50"/>
+              <minimumSize width="100" height="50"/>
+              <preferredSize width="100" height="50"/>
+              <text value="tan"/>
+            </properties>
+          </component>
+          <component id="a2b71" class="javax.swing.JButton" binding="arctanButton" custom-create="true" default-binding="true">
+            <constraints>
+              <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag top="3" left="3" bottom="3" right="3" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-10921639"/>
+              <borderPainted value="false"/>
+              <font name="Lao UI" size="18" style="0"/>
+              <foreground color="-1"/>
+              <maximumSize width="100" height="50"/>
+              <minimumSize width="100" height="50"/>
+              <preferredSize width="100" height="50"/>
+              <text value="arctan"/>
+            </properties>
+          </component>
+          <component id="c9267" class="javax.swing.JButton" binding="arccosButton" custom-create="true" default-binding="true">
+            <constraints>
+              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag top="3" left="3" bottom="3" right="3" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-10921639"/>
+              <borderPainted value="false"/>
+              <font name="Lao UI" size="18" style="0"/>
+              <foreground color="-1"/>
+              <maximumSize width="100" height="50"/>
+              <minimumSize width="100" height="50"/>
+              <preferredSize width="100" height="50"/>
+              <text value="arccos"/>
+            </properties>
+          </component>
+          <component id="515d9" class="javax.swing.JButton" binding="lnButton" custom-create="true" default-binding="true">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag top="3" left="3" bottom="3" right="3" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-10921639"/>
+              <borderPainted value="false"/>
+              <font name="Lao UI" size="18" style="0"/>
+              <foreground color="-1"/>
+              <maximumSize width="100" height="50"/>
+              <minimumSize width="100" height="50"/>
+              <preferredSize width="100" height="50"/>
+              <text value="ln"/>
+            </properties>
+          </component>
+          <component id="c58f8" class="javax.swing.JButton" binding="arcsinButton" custom-create="true" default-binding="true">
+            <constraints>
+              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag top="3" left="3" bottom="3" right="3" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-10921639"/>
+              <borderPainted value="false"/>
+              <font name="Lao UI" size="18" style="0"/>
+              <foreground color="-1"/>
+              <maximumSize width="100" height="50"/>
+              <minimumSize width="100" height="50"/>
+              <preferredSize width="100" height="50"/>
+              <text value="arcsin"/>
+            </properties>
+          </component>
+          <component id="202be" class="javax.swing.JButton" binding="expButton" custom-create="true">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag top="3" left="3" bottom="3" right="3" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-10921639"/>
+              <borderPainted value="false"/>
+              <font name="Lao UI" size="18" style="0"/>
+              <foreground color="-1"/>
+              <maximumSize width="100" height="50"/>
+              <minimumSize width="100" height="50"/>
+              <preferredSize width="100" height="50"/>
+              <text value="e^x"/>
+            </properties>
+          </component>
+          <component id="4d14c" class="javax.swing.JButton" binding="powButton" custom-create="true">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag top="3" left="3" bottom="3" right="3" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-10921639"/>
+              <borderPainted value="false"/>
+              <font name="Lao UI" size="18" style="0"/>
+              <foreground color="-1"/>
+              <maximumSize width="100" height="50"/>
+              <minimumSize width="100" height="50"/>
+              <preferredSize width="100" height="50"/>
+              <text value="x^y"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="dc5c1" binding="operatorPanel" layout-manager="GridBagLayout">
+        <constraints>
+          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <opaque value="false"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="2fc14" class="javax.swing.JButton" binding="addButton" custom-create="true">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag top="3" left="3" bottom="3" right="3" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-10921639"/>
+              <borderPainted value="false"/>
+              <font name="Lao UI" size="18" style="0"/>
+              <foreground color="-1"/>
+              <maximumSize width="100" height="50"/>
+              <minimumSize width="100" height="50"/>
+              <preferredSize width="100" height="50"/>
+              <text value="+"/>
+            </properties>
+          </component>
+          <component id="9370b" class="javax.swing.JButton" binding="subButton" custom-create="true">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag top="3" left="3" bottom="3" right="3" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-10921639"/>
+              <borderPainted value="false"/>
+              <font name="Lao UI" size="18" style="0"/>
+              <foreground color="-1"/>
+              <maximumSize width="100" height="50"/>
+              <minimumSize width="100" height="50"/>
+              <preferredSize width="100" height="50"/>
+              <text value="-"/>
+            </properties>
+          </component>
+          <component id="125da" class="javax.swing.JButton" binding="multButton" custom-create="true">
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag top="3" left="3" bottom="3" right="3" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-10921639"/>
+              <borderPainted value="false"/>
+              <font name="Lao UI" size="18" style="0"/>
+              <foreground color="-1"/>
+              <maximumSize width="100" height="50"/>
+              <minimumSize width="100" height="50"/>
+              <preferredSize width="100" height="50"/>
+              <text value="*"/>
+            </properties>
+          </component>
+          <component id="d3c03" class="javax.swing.JButton" binding="divButton" custom-create="true">
+            <constraints>
+              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag top="3" left="3" bottom="3" right="3" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-10921639"/>
+              <borderPainted value="false"/>
+              <font name="Lao UI" size="18" style="0"/>
+              <foreground color="-1"/>
+              <maximumSize width="100" height="50"/>
+              <minimumSize width="100" height="50"/>
+              <preferredSize width="100" height="50"/>
+              <text value="/"/>
+            </properties>
+          </component>
+          <component id="b2b5b" class="javax.swing.JButton" binding="DELButton" custom-create="true" default-binding="true">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag top="3" left="3" bottom="3" right="3" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-10921639"/>
+              <borderPainted value="false"/>
+              <font name="Lao UI" size="18" style="0"/>
+              <foreground color="-1"/>
+              <maximumSize width="100" height="50"/>
+              <minimumSize width="100" height="50"/>
+              <preferredSize width="100" height="50"/>
+              <text value="DEL"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="3da54" class="javax.swing.JTextField" binding="ResultTextField" custom-create="true">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="10" left="10" bottom="10" right="10" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <focusable value="true"/>
+          <font name="Lao UI" size="36" style="0"/>
+          <foreground color="-1"/>
+          <horizontalAlignment value="4"/>
+          <maximumSize width="50" height="100"/>
+          <minimumSize width="50" height="100"/>
+          <preferredSize width="50" height="100"/>
+          <selectedTextColor color="-1"/>
+          <selectionColor color="-4473925"/>
+        </properties>
+      </component>
+      <grid id="9b56d" binding="GraphPanel" custom-create="true" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="0" column="4" row-span="2" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <preferredSize width="500" height="400"/>
+        </properties>
+        <border type="line"/>
+        <children/>
+      </grid>
+    </children>
+  </grid>
+</form>

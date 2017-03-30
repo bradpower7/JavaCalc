@@ -4,14 +4,13 @@
  * and open the template in the editor.
  */
 import Jraph.DataPoint2D;
-import org.jfree.chart.*;
+/*import org.jfree.chart.*;
 import org.jfree.data.xy.*;
-import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.PlotOrientation;*/
 
 import javax.swing.*;
 import javax.xml.transform.Result;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.util.ArrayList;
 
 /**
@@ -37,7 +36,7 @@ ublic void actionPerformed(ActionEvent e) {
 public class JavaCalcUI extends javax.swing.JFrame {
 
 
-    private String graphExpression;
+    private String expression;
     private boolean lastNum = false;
 
     private CalculationModule calcModule;
@@ -53,18 +52,18 @@ public class JavaCalcUI extends javax.swing.JFrame {
         initComponents();
 
         calcModule = new CalculationModule();
-        graphExpression = new String();
+        //expression = new String();
 
 
 
-        dataset = new XYSeriesCollection();
+        /*dataset = new XYSeriesCollection();
 
         chart = ChartFactory.createXYLineChart(null,null,null,dataset);
         cp = new ChartPanel(chart);
         GraphPanel.add(cp, java.awt.BorderLayout.CENTER);
         GraphPanel.validate();
         //GraphPanel.add(plotPanel, java.awt.BorderLayout.CENTER);
-        //GraphPanel.validate();
+        //GraphPanel.validate();*/
 
     }
 
@@ -79,32 +78,41 @@ public class JavaCalcUI extends javax.swing.JFrame {
 
         StandardCalcPanel = new javax.swing.JPanel();
         ResultTextField = new javax.swing.JTextField();
-        ClearButton = new javax.swing.JButton();
-        SqrtButton = new javax.swing.JButton();
-        SquaredButton = new javax.swing.JButton();
-        InverseButton = new javax.swing.JButton();
-        DivideButton = new javax.swing.JButton();
-        MultiplyButton = new javax.swing.JButton();
-        SubtractButton = new javax.swing.JButton();
-        AddButton = new javax.swing.JButton();
-        EqualsButton = new javax.swing.JButton();
-        Button9 = new javax.swing.JButton();
-        Button6 = new javax.swing.JButton();
-        Button3 = new javax.swing.JButton();
-        DecimalButton = new javax.swing.JButton();
-        Button0 = new javax.swing.JButton();
-        Button2 = new javax.swing.JButton();
-        Button5 = new javax.swing.JButton();
-        Button8 = new javax.swing.JButton();
-        Button7 = new javax.swing.JButton();
-        Button4 = new javax.swing.JButton();
-        Button1 = new javax.swing.JButton();
+
+
+        SqrtButton = new TokenButton("sqrt");
+        SquaredButton = new TokenButton("^2");
+        InverseButton = new TokenButton("^-1");
+
+        DivideButton = new TokenButton("/");
+        MultiplyButton = new TokenButton("*");
+        SubtractButton = new TokenButton("-");
+        AddButton = new TokenButton("+");
+
+        Button0 = new TokenButton("0");
+        Button1 = new TokenButton("1");
+        Button2 = new TokenButton("2");
+        Button3 = new TokenButton("3");
+        Button4 = new TokenButton("4");
+        Button5 = new TokenButton("5");
+        Button6 = new TokenButton("6");
+        Button7 = new TokenButton("7");
+        Button8 = new TokenButton("8");
+        Button9 = new TokenButton("9");
+
+        XButton = new TokenButton("x");
+        LeftBracketButton = new TokenButton("(");
+        RightBracketButton = new TokenButton(")");
+        DecimalButton = new TokenButton(".");
+
         NegateButton = new javax.swing.JButton();
         DeleteButton = new javax.swing.JButton();
+        ClearButton = new javax.swing.JButton();
+        EqualsButton = new javax.swing.JButton();
+
         GraphPanel = new javax.swing.JPanel();
-        XButton = new javax.swing.JButton();
-        LeftBracketButton = new JButton();
-        RightBracketButton = new JButton();
+
+
         //GraphTextField = new javax.swing.JTextField();
         //GraphButton = new javax.swing.JButton();
 
@@ -114,31 +122,46 @@ public class JavaCalcUI extends javax.swing.JFrame {
 
         StandardCalcPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        ResultTextField.setEditable(false);
-        ResultTextField.setText(Integer.toString(0));
+        ResultTextField.setEditable(true);
+        ResultTextField.setFocusable(true);
+        //ResultTextField.setFocusTraversalKeysEnabled(false);
+        //ResultTextField.setText(Integer.toString(0));
         ResultTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        ResultTextField.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "escPressed");
+
+        class ClearAction extends AbstractAction{
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               // ClearButtonActionPerformed(e);
+                ResultTextField.setText("");
+            }
+        }
+
+        ResultTextField.getActionMap().put("escPressed", new ClearAction());
+
 
         ClearButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         ClearButton.setText("Clear");
+        ClearButton.setFocusable(false);
         ClearButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ModifierActionPerformed(evt);
+                ClearButtonActionPerformed(evt);
             }
         });
 
         SqrtButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        SqrtButton.setText("<html>&radic");
+        //SqrtButton.setText("<html>&radic");
+        SqrtButton.setText("sqrt");
         SqrtButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                OperatorButtonActionPerformed(evt);
+                TokenButtonActionPerformed(evt);
             }
         });
 
         SquaredButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         SquaredButton.setText("<html>x<sup>2</sup>");
         SquaredButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                OperatorButtonActionPerformed(evt);
+            public void actionPerformed(java.awt.event.ActionEvent evt) { TokenButtonActionPerformed(evt);
             }
         });
 
@@ -146,7 +169,7 @@ public class JavaCalcUI extends javax.swing.JFrame {
         InverseButton.setText("<html><sup>1</sup>&frasl;<sub>x</sub>");
         InverseButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                OperatorButtonActionPerformed(evt);
+                TokenButtonActionPerformed(evt);
             }
         });
 
@@ -154,7 +177,7 @@ public class JavaCalcUI extends javax.swing.JFrame {
         DivideButton.setText("<html>&divide");
         DivideButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                OperatorButtonActionPerformed(evt);
+                TokenButtonActionPerformed(evt);
             }
         });
 
@@ -162,7 +185,7 @@ public class JavaCalcUI extends javax.swing.JFrame {
         MultiplyButton.setText("<html>&times");
         MultiplyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                OperatorButtonActionPerformed(evt);
+                TokenButtonActionPerformed(evt);
             }
         });
 
@@ -170,7 +193,7 @@ public class JavaCalcUI extends javax.swing.JFrame {
         SubtractButton.setText("<html>&minus");
         SubtractButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                OperatorButtonActionPerformed(evt);
+                TokenButtonActionPerformed(evt);
             }
         });
 
@@ -178,15 +201,7 @@ public class JavaCalcUI extends javax.swing.JFrame {
         AddButton.setText("+");
         AddButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                OperatorButtonActionPerformed(evt);
-            }
-        });
-
-        EqualsButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        EqualsButton.setText("=");
-        EqualsButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EqualsButtonActionPerformed(evt);
+                TokenButtonActionPerformed(evt);
             }
         });
 
@@ -194,7 +209,7 @@ public class JavaCalcUI extends javax.swing.JFrame {
         XButton.setText("x");
         XButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                XButtonActionPerformed(evt);
+                TokenButtonActionPerformed(evt);
             }
         });
 
@@ -202,7 +217,7 @@ public class JavaCalcUI extends javax.swing.JFrame {
         LeftBracketButton.setText("(");
         LeftBracketButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BracketButtonActionPerformed(evt);
+                TokenButtonActionPerformed(evt);
             }
         });
 
@@ -210,31 +225,7 @@ public class JavaCalcUI extends javax.swing.JFrame {
         RightBracketButton.setText(")");
         RightBracketButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BracketButtonActionPerformed(evt);
-            }
-        });
-
-        Button9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        Button9.setText("9");
-        Button9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NumberActionPerformed(evt);
-            }
-        });
-
-        Button6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        Button6.setText("6");
-        Button6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NumberActionPerformed(evt);
-            }
-        });
-
-        Button3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        Button3.setText("3");
-        Button3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NumberActionPerformed(evt);
+                TokenButtonActionPerformed(evt);
             }
         });
 
@@ -242,7 +233,31 @@ public class JavaCalcUI extends javax.swing.JFrame {
         DecimalButton.setText(".");
         DecimalButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DecimalButtonActionPerformed(evt);
+                TokenButtonActionPerformed(evt);
+            }
+        });
+
+        Button9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Button9.setText("9");
+        Button9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TokenButtonActionPerformed(evt);
+            }
+        });
+
+        Button6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Button6.setText("6");
+        Button6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TokenButtonActionPerformed(evt);
+            }
+        });
+
+        Button3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Button3.setText("3");
+        Button3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TokenButtonActionPerformed(evt);
             }
         });
 
@@ -250,7 +265,7 @@ public class JavaCalcUI extends javax.swing.JFrame {
         Button0.setText("0");
         Button0.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NumberActionPerformed(evt);
+                TokenButtonActionPerformed(evt);
             }
         });
 
@@ -258,7 +273,7 @@ public class JavaCalcUI extends javax.swing.JFrame {
         Button2.setText("2");
         Button2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NumberActionPerformed(evt);
+                TokenButtonActionPerformed(evt);
             }
         });
 
@@ -266,7 +281,7 @@ public class JavaCalcUI extends javax.swing.JFrame {
         Button5.setText("5");
         Button5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NumberActionPerformed(evt);
+                TokenButtonActionPerformed(evt);
             }
         });
 
@@ -274,7 +289,7 @@ public class JavaCalcUI extends javax.swing.JFrame {
         Button8.setText("8");
         Button8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NumberActionPerformed(evt);
+                TokenButtonActionPerformed(evt);
             }
         });
 
@@ -282,7 +297,7 @@ public class JavaCalcUI extends javax.swing.JFrame {
         Button7.setText("7");
         Button7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NumberActionPerformed(evt);
+                TokenButtonActionPerformed(evt);
             }
         });
 
@@ -290,7 +305,7 @@ public class JavaCalcUI extends javax.swing.JFrame {
         Button4.setText("4");
         Button4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NumberActionPerformed(evt);
+                TokenButtonActionPerformed(evt);
             }
         });
 
@@ -298,23 +313,34 @@ public class JavaCalcUI extends javax.swing.JFrame {
         Button1.setText("1");
         Button1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NumberActionPerformed(evt);
+                TokenButtonActionPerformed(evt);
             }
         });
 
         NegateButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         NegateButton.setText("<html><sup>+</sup>&frasl;<sub>&minus;</sub>");
+        NegateButton.setFocusable(false);
         NegateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ModifierActionPerformed(evt);
+                NegateButtonActionPerformed(evt);
             }
         });
 
         DeleteButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         DeleteButton.setText("Delete");
+        DeleteButton.setFocusable(false);
         DeleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ModifierActionPerformed(evt);
+                DeleteButtonActionPerformed(evt);
+            }
+        });
+
+        EqualsButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        EqualsButton.setText("=");
+        EqualsButton.setFocusable(false);
+        EqualsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EqualsButtonActionPerformed(evt);
             }
         });
 
@@ -482,32 +508,19 @@ public class JavaCalcUI extends javax.swing.JFrame {
 
         )));
 
+        this.getRootPane().setDefaultButton(EqualsButton);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
 
-    private void BracketButtonActionPerformed(ActionEvent evt){
+
+    private void TokenButtonActionPerformed(ActionEvent evt){
         Object source = evt.getSource();
-        if(source == LeftBracketButton){
-            ResultTextField.setText(ResultTextField.getText().concat("("));
-            graphExpression += " ( ";
-        }
-        else{
-            ResultTextField.setText(ResultTextField.getText().concat(")"));
-            graphExpression += " ) ";
-        }
+        String text = ((TokenButton)source).getTokenText();
+        ResultTextField.setText(ResultTextField.getText().concat(text));
     }
-    private void XButtonActionPerformed(java.awt.event.ActionEvent evt){
-        if(ResultTextField.getText().matches("0")){
-            ResultTextField.setText("x");
-            graphExpression += " x ";
-        }
-        else {
-            ResultTextField.setText(ResultTextField.getText().concat("x"));
-            graphExpression += " x ";
-        }
-    }
-    private void OperatorButtonActionPerformed(java.awt.event.ActionEvent evt){
+    /*private void OperatorButtonActionPerformed(java.awt.event.ActionEvent evt){
         Object source = evt.getSource();
 
         String opText ="";
@@ -551,48 +564,66 @@ public class JavaCalcUI extends javax.swing.JFrame {
             }
         }
 
-        graphExpression += (expText);
+        expression += (expText);
         ResultTextField.setText(ResultTextField.getText().concat(opText));
-    }
+    }*/
 
-    private void ModifierActionPerformed(java.awt.event.ActionEvent evt) {
+   /* private void ModifierButtonActionPerformed(ActionEvent evt) {
         Object source = evt.getSource();
         String currentText = ResultTextField.getText();
         StringBuilder sb = new StringBuilder(currentText);
 
         if(source == ClearButton) {
-            ResultTextField.setText("0");
-            graphExpression = "";
-            result = 0;
-            op1 = 0;
-            op2 = 0;
-            ans = 0;
+            ResultTextField.setText("");
         }
         else if(source == DeleteButton) {
-            if(currentText.matches("0")) {/*Do nothing*/}
-            else if(currentText.length() == 1) {
-                ResultTextField.setText("0");
-                graphExpression = "";
+            if(currentText.length() == 0) {
+                ResultTextField.setText("");
             }
-            else {
+            else if(!currentText.matches("0")){
                 sb.deleteCharAt(sb.length() - 1);
                 ResultTextField.setText(sb.toString());
-
             }
         }
         else { //NegateButton
-            if(currentText.matches("0")) {/*Do nothing*/}
-            else if(!currentText.contains("-")) {
+            if(currentText.matches("0")) {/*Do nothing}
+            else if(!currentText.startsWith("-")) {
                 sb.insert(0, "-");
-                graphExpression.trim();
-                graphExpression = "-1 * " + graphExpression;
                 ResultTextField.setText(sb.toString());
             }
-            else { // currentText.contains("-")
+            else { // currentText.startsWith("-")
                 sb.deleteCharAt(0);
-                graphExpression = "-1 * " + graphExpression;
                 ResultTextField.setText(sb.toString());
             }
+        }
+    }*/
+
+    private void ClearButtonActionPerformed(ActionEvent evt){
+        ResultTextField.setText("");
+    }
+
+    private void DeleteButtonActionPerformed(ActionEvent evt){
+        String currentText = ResultTextField.getText();
+        StringBuilder sb = new StringBuilder(currentText);
+        if(currentText.length() == 0) {
+            ResultTextField.setText("");
+        }
+        else if(!currentText.matches("0")){
+            sb.deleteCharAt(sb.length() - 1);
+            ResultTextField.setText(sb.toString());
+        }
+    }
+
+    private void NegateButtonActionPerformed(ActionEvent evt){
+        String currentText = ResultTextField.getText();
+        StringBuilder sb = new StringBuilder(currentText);
+        if(currentText.startsWith("-")) {
+            sb.deleteCharAt(0);
+            ResultTextField.setText(sb.toString());
+        }
+        else {
+            sb.insert(0, "-");
+            ResultTextField.setText(sb.toString());
         }
     }
 
@@ -602,13 +633,13 @@ public class JavaCalcUI extends javax.swing.JFrame {
         /*else if(currentText.)
         else*/
             ResultTextField.setText(ResultTextField.getText().concat("."));
-            graphExpression+=".";
+            expression +=".";
     }//GEN-LAST:event_DecimalButtonActionPerformed
 
     private void EqualsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EqualsButtonActionPerformed
 
         ArrayList<DataPoint2D> data = calcModule.evaluateExpression(ResultTextField.getText());
-        series = new XYSeries("series");
+        /*series = new XYSeries("series");
         for(DataPoint2D pt : data){
             series.add(pt.getX(), pt.getY());
         }
@@ -616,9 +647,9 @@ public class JavaCalcUI extends javax.swing.JFrame {
         dataset.addSeries(series);
 
         chart.getXYPlot().getRenderer().setSeriesVisibleInLegend(0, false);
-        cp.repaint();
+        cp.repaint();*/
 
-        if(!graphExpression.contains(Character.toString('x'))) {
+        if(!ResultTextField.getText().contains(Character.toString('x'))) {
             ResultTextField.setText(Double.toString(data.get(0).getY()));
         }
     }//GEN-LAST:event_EqualsButtonActionPerformed
@@ -654,13 +685,13 @@ public class JavaCalcUI extends javax.swing.JFrame {
             if(num.matches("0")) {/*Do nothing*/}
             else {
                 ResultTextField.setText(num);
-                graphExpression += num;
+                expression += num;
                 lastNum = true;
             }
         }
         else {
             ResultTextField.setText(currentText.concat(num));
-            graphExpression += num;
+            expression += num;
         }
     }
     /**
@@ -699,12 +730,12 @@ public class JavaCalcUI extends javax.swing.JFrame {
     }
 
     private double result, op1, op2, ans;
-    private Operator operator;
+    //private Operator operator;
     //private GraphTypeModel graphTypeModel = new GraphTypeModel();
-    private XYSeries series;
+    /*private XYSeries series;
     private XYSeriesCollection dataset;
     private JFreeChart chart;
-    private ChartPanel cp;
+    private ChartPanel cp;*/
     //private GraphingData data = new GraphingData();
     //private PlotPanel plotPanel = new PlotPanel();
     private StringBuilder graphString = new StringBuilder("");
@@ -742,6 +773,6 @@ public class JavaCalcUI extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 }
 
-enum Operator {
+/*enum Operator {
     Multiply, Divide, Add, Subtract, Sqrt, Inverse, Square
-}
+}*/
